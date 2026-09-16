@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive virtual walkthrough and design studio for lobby upgrades: decluttering, landscaping, and premium remodeling concepts.">
+  <title>Lobby Design Studio & Virtual Walkthrough</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="index.css?v=12">
+</head>
+<body>
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-logo">
+      <span class="logo-icon">📐</span>
+      <span class="logo-text">Lobby Design Studio</span>
+    </div>
+    <nav class="header-tabs">
+      <button class="nav-tab active" id="tab-walkthrough">Virtual Walkthrough</button>
+      <button class="nav-tab" id="tab-wizard">Design Studio Wizard</button>
+      <button class="nav-tab" id="tab-portfolio">💼 My Portfolio</button>
+    </nav>
+    <!-- Settings Controls -->
+    <div class="header-settings">
+      <button class="settings-btn" id="btn-settings-gear" title="Settings">⚙️</button>
+      <div class="settings-panel hidden" id="settings-dropdown">
+        <h4 class="settings-title">Preferences</h4>
+        <div class="setting-item">
+          <span>Debug Mode</span>
+          <label class="switch-control miniature">
+            <input type="checkbox" id="switch-debug-mode">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container A: Virtual Walkthrough (Original View) -->
+  <div class="app-container" id="walkthrough-container">
+    <!-- Sidebar Controls -->
+    <aside class="sidebar">
+      <div class="brand-section">
+        <span class="badge">Walkthrough Mode</span>
+        <h2>Lobby Exploration</h2>
+        <p class="subtitle">Switch design tiers and walk through the nodes</p>
+      </div>
+
+      <nav class="level-selector-nav">
+        <h2>Select Design Tier</h2>
+        <div class="tier-buttons" id="tier-buttons-container">
+          <button class="tier-btn active" data-level="original" id="btn-original">
+            <span class="btn-icon">⚪</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Raw Canvas</span>
+              <span class="btn-desc">Original untouched space</span>
+            </div>
+          </button>
+          
+          <button class="tier-btn" data-level="level1" id="btn-level1">
+            <span class="btn-icon">🧹</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Decluttered Flow</span>
+              <span class="btn-desc">Cleanup & rearranging</span>
+            </div>
+          </button>
+          
+          <button class="tier-btn" data-level="level2" id="btn-level2">
+            <span class="btn-icon">🌿</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Botanical Pathway</span>
+              <span class="btn-desc">Greenery & stone walkway</span>
+            </div>
+          </button>
+          
+          <button class="tier-btn" data-level="minimal" id="btn-minimal">
+            <span class="btn-icon">🟢</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Refined Hearth</span>
+              <span class="btn-desc">Declutter & styled furniture</span>
+            </div>
+          </button>
+          
+          <button class="tier-btn" data-level="moderate" id="btn-moderate">
+            <span class="btn-icon">🔵</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Modern Harmony</span>
+              <span class="btn-desc">Warm walls & matching grey sofas</span>
+            </div>
+          </button>
+          
+          <button class="tier-btn" data-level="complete" id="btn-complete">
+            <span class="btn-icon">👑</span>
+            <div class="btn-text-wrapper">
+              <span class="btn-title">Walnut & Marble Grandeur</span>
+              <span class="btn-desc">Premium wood & marble redesign</span>
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Details Panel -->
+      <section class="details-panel" id="details-panel">
+        <div class="panel-header">
+          <h3 id="details-tier-title">Raw Canvas - Lobby Entrance</h3>
+          <p id="details-tier-desc">Baseline original environment before design styling.</p>
+        </div>
+        
+        <div class="upgrades-list-container">
+          <h4>Key Features & Changes</h4>
+          <ul class="upgrades-list" id="upgrades-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- Mode Switcher (Tab or Slider) -->
+      <div class="mode-toggle-card">
+        <div class="toggle-header">
+          <span>Compare Mode</span>
+          <span class="toggle-status" id="compare-status-text">Slider Off</span>
+        </div>
+        <label class="switch-control">
+          <input type="checkbox" id="slider-mode-toggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <footer class="sidebar-footer">
+        <p>Lobby Walkthrough • Starter View Iteration</p>
+      </footer>
+    </aside>
+
+    <!-- Main Image Canvas -->
+    <main class="viewer-main">
+      <div class="viewer-header">
+        <div class="view-meta">
+          <span class="meta-label">Current View</span>
+          <span class="meta-value" id="view-indicator">Lobby Walkthrough (Start Position, Facing Forward)</span>
+        </div>
+        <div class="meta-instructions">
+          Click the HUD arrows or use W/A/S/D / arrow keys to walk and look around the lobby.
+        </div>
+      </div>
+
+      <!-- Image Viewer Wrapper -->
+      <div class="viewer-container" id="viewer-container">
+        <!-- Standard Crossfade Mode -->
+        <div class="fade-viewer" id="fade-viewer">
+          <img src="lobby_starter_original.jpg" alt="Lobby active view" class="view-image active" id="fade-active-img">
+          <img src="lobby_starter_original.jpg" alt="Lobby next view" class="view-image" id="fade-next-img">
+        </div>
+
+        <!-- Slider/Curtain Mode -->
+        <div class="slider-viewer hidden" id="slider-viewer">
+          <!-- Background: Selected Upgrade -->
+          <div class="slider-bg-img-container">
+            <img src="lobby_starter_minimal.png" alt="Upgrade View" id="slider-upgrade-img">
+          </div>
+          <!-- Foreground: Original (clipped width) -->
+          <div class="slider-fg-img-container" id="slider-fg-container">
+            <img src="lobby_starter_original.jpg" alt="Original View" id="slider-original-img">
+          </div>
+          <!-- Draggable Handle Bar -->
+          <div class="slider-handle" id="slider-handle">
+            <div class="handle-line"></div>
+            <div class="handle-button">
+              <span class="arrow-left">◀</span>
+              <span class="arrow-right">▶</span>
+            </div>
+            <div class="handle-line"></div>
+          </div>
+        </div>
+
+        <!-- Translucent Navigation HUD -->
+        <div class="nav-hud" id="nav-hud">
+          <button id="nav-left" class="hud-btn" title="Look Left (Left Arrow or A)">◀</button>
+          <div class="hud-center-group">
+            <button id="nav-up" class="hud-btn" title="Walk Forward (Up Arrow or W)">▲</button>
+            <button id="nav-uturn" class="hud-btn" title="Turn Around (U-Key or S)">⟲</button>
+            <button id="nav-down" class="hud-btn" title="Walk Backward (Down Arrow or S)">▼</button>
+          </div>
+          <button id="nav-right" class="hud-btn" title="Look Right (Right Arrow or D)">▶</button>
+        </div>
+
+        <!-- Spatial Overlay & SVG Mini-Map -->
+        <div class="spatial-overlay">
+          <div class="compass-wrapper">
+            <div class="compass">
+              <div class="compass-needle" id="compass-needle"></div>
+              <span class="compass-dir">N</span>
+            </div>
+            <div class="position-indicator" id="position-indicator">Start View</div>
+          </div>
+          
+          <div class="mini-map-container">
+                <svg viewBox="0 0 100 120" id="mini-map-svg">
+              <!-- LOBBY BLUEPRINT GROUP -->
+              <g id="map-lobby-layout">
+                <!-- Room walls -->
+                <rect x="5" y="5" width="90" height="110" rx="6" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <!-- Doorways (draw gaps) -->
+                <line x1="25" y1="5" x2="45" y2="5" stroke="#12141c" stroke-width="4" />
+                <line x1="55" y1="5" x2="75" y2="5" stroke="#12141c" stroke-width="4" />
+                <!-- Staircase visual -->
+                <rect x="10" y="80" width="16" height="30" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)"/>
+                <line x1="10" y1="87" x2="26" y2="87" stroke="rgba(255,255,255,0.1)" />
+                <line x1="10" y1="95" x2="26" y2="95" stroke="rgba(255,255,255,0.1)" />
+                <line x1="10" y1="102" x2="26" y2="102" stroke="rgba(255,255,255,0.1)" />
+                <!-- Pedestal Washbasin on the left -->
+                <ellipse cx="14" cy="55" rx="6" ry="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+                
+                <!-- Position Dots -->
+                <circle cx="50" cy="95" r="4.5" class="map-dot" id="lobby-dot-0" />
+                <circle cx="50" cy="60" r="4.5" class="map-dot" id="lobby-dot-1" />
+                <circle cx="50" cy="25" r="4.5" class="map-dot" id="lobby-dot-2" />
+              </g>
+
+              <!-- BEDROOM BLUEPRINT GROUP -->
+              <g id="map-bedroom-layout" class="hidden">
+                <!-- Room walls -->
+                <rect x="5" y="5" width="90" height="110" rx="6" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <!-- Bedroom Door (gap at the bottom center) -->
+                <line x1="40" y1="115" x2="60" y2="115" stroke="#12141c" stroke-width="4" />
+                
+                <!-- Bed outline (double bed in center) -->
+                <rect x="27" y="15" width="46" height="40" rx="2" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                <!-- Pillows -->
+                <rect x="32" y="19" width="15" height="8" rx="1" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
+                <rect x="53" y="19" width="15" height="8" rx="1" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
+                
+                <!-- Side Tables -->
+                <rect x="14" y="15" width="10" height="12" rx="1" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)"/>
+                <rect x="76" y="15" width="10" height="12" rx="1" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)"/>
+                
+                <!-- Wardrobe outline (on the left side) -->
+                <rect x="12" y="65" width="12" height="35" rx="1" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)"/>
+                
+                <!-- Position Dots -->
+                <circle cx="50" cy="95" r="4.5" class="map-dot" id="bed-dot-0" />
+                <circle cx="50" cy="55" r="4.5" class="map-dot" id="bed-dot-1" />
+              </g>
+
+              <!-- DRAWING ROOM BLUEPRINT GROUP -->
+              <g id="map-drawing-layout" class="hidden">
+                <!-- Room walls -->
+                <rect x="5" y="5" width="90" height="110" rx="6" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <!-- Drawing Door (gap at the bottom center) -->
+                <line x1="40" y1="115" x2="60" y2="115" stroke="#12141c" stroke-width="4" />
+                
+                <!-- L-Sectional Sofa Outline -->
+                <path d="M 15 20 L 80 20 L 80 50 L 68 50 L 68 32 L 15 32 Z" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                <!-- Coffee Table -->
+                <rect x="35" y="42" width="22" height="14" rx="2" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)"/>
+                
+                <!-- Media Console outline -->
+                <rect x="12" y="90" width="50" height="10" rx="1" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)"/>
+                
+                <!-- Position Dots -->
+                <circle cx="50" cy="95" r="4.5" class="map-dot" id="draw-dot-0" />
+                <circle cx="50" cy="60" r="4.5" class="map-dot" id="draw-dot-1" />
+              </g>
+              
+              <!-- Cone of Vision (Rotated dynamically via JS) -->
+              <path d="M 0 0 L -12 -24 A 26 26 0 0 1 12 -24 Z" fill="rgba(139, 92, 246, 0.25)" stroke="rgba(139, 92, 246, 0.5)" stroke-width="1.5" id="vision-cone" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Monospace Filename debug badge -->
+        <div class="filename-badge hidden" id="filename-debug-badge">
+          <span class="badge-icon">📷</span>
+          <span id="filename-debug-text">lobby_starter_original.jpg</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Container B: Design Studio Wizard (New Flow) -->
+  <div class="app-container hidden" id="wizard-container">
+    <!-- Wizard Steps Sidebar -->
+    <aside class="sidebar">
+      <div class="brand-section">
+        <span class="badge">Design Studio</span>
+        <h2>Transformation Wizard</h2>
+        <p class="subtitle">Complete step-by-step layout redesign</p>
+      </div>
+
+      <div class="wizard-steps-list">
+        <div class="wizard-step-node active" data-wizard-step="1">
+          <span class="step-num">1</span>
+          <div class="step-details">
+            <span class="step-title">Upload Photo</span>
+            <span class="step-status">Select room canvas</span>
+          </div>
+        </div>
+        
+        <div class="wizard-step-node" data-wizard-step="2">
+          <span class="step-num">2</span>
+          <div class="step-details">
+            <span class="step-title">Room Scan</span>
+            <span class="step-status">Scan structure &amp; colour</span>
+          </div>
+        </div>
+        
+        <div class="wizard-step-node" data-wizard-step="3">
+          <span class="step-num">3</span>
+          <div class="step-details">
+            <span class="step-title">Style Selection</span>
+            <span class="step-status">Pick aesthetic presets</span>
+          </div>
+        </div>
+        
+        <div class="wizard-step-node" data-wizard-step="4">
+          <span class="step-num">4</span>
+          <div class="step-details">
+            <span class="step-title">Style Preview</span>
+            <span class="step-status">Preview a style</span>
+          </div>
+        </div>
+        
+        <div class="wizard-step-node" data-wizard-step="5">
+          <span class="step-num">5</span>
+          <div class="step-details">
+            <span class="step-title">Furniture Specs</span>
+            <span class="step-status">Sourcing recommendations</span>
+          </div>
+        </div>
+        
+        <div class="wizard-step-node" data-wizard-step="6">
+          <span class="step-num">6</span>
+          <div class="step-details">
+            <span class="step-title">Final Report</span>
+            <span class="step-status">Export spec packages</span>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-actions" style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
+        <button class="primary-btn" id="btn-save-project" style="width: 100%; justify-content: center; gap: 0.5rem; display: flex; align-items: center;">
+          <span>💾</span> Save Project State
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wizard Screen -->
+    <main class="viewer-main wizard-main-panel">
+      <!-- Step 1: Upload Photo -->
+      <section class="wizard-content active" id="wizard-step-1-content">
+        <div class="wizard-card-header">
+          <h2>Step 1: Upload Room Photo</h2>
+          <p>Drag and drop or select a photo of your lobby. We will analyze the structural elements and layout bounds.</p>
+        </div>
+
+        <div class="upload-dropzone" id="upload-zone">
+          <input type="file" id="file-upload-input" accept="image/*" style="display: none;">
+          <div class="upload-icon">📤</div>
+          <h3>Drag & Drop room image here</h3>
+          <p>Supports PNG, JPG, or JPEG (Max 10MB)</p>
+          <span class="btn-divider">or</span>
+          <button class="primary-btn" id="btn-choose-file">Choose Local File</button>
+        </div>
+
+        <div class="preset-sample-section">
+          <h4>Or start with our custom design test views:</h4>
+          <div class="sample-thumbnail-card" id="btn-use-test-bedroom" style="margin-top: 10px; border-color: rgba(139, 92, 246, 0.3);">
+            <div style="width: 80px; height: 60px; overflow: hidden; border-radius: var(--border-radius-sm); margin-right: 1.5rem; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border);">
+              <span style="font-size: 1.5rem;">🛏️</span>
+            </div>
+            <div class="sample-info">
+              <span class="sample-name">🧪 Run Custom Test Mode (Bedroom Upload)</span>
+              <span class="sample-meta">Simulates uploading a bedroom image to run the general-purpose redesign flow.</span>
+            </div>
+            <span class="arrow-indicator">➔</span>
+          </div>
+          <div class="sample-thumbnail-card" id="btn-use-test-drawing" style="margin-top: 10px; border-color: rgba(139, 92, 246, 0.3);">
+            <div style="width: 80px; height: 60px; overflow: hidden; border-radius: var(--border-radius-sm); margin-right: 1.5rem; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border);">
+              <span style="font-size: 1.5rem;">🛋️</span>
+            </div>
+            <div class="sample-info">
+              <span class="sample-name">🧪 Run Custom Test Mode (Drawing Room Upload)</span>
+              <span class="sample-meta">Simulates uploading a drawing room image to run the general-purpose redesign flow.</span>
+            </div>
+            <span class="arrow-indicator">➔</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2: AI Analysis -->
+      <section class="wizard-content" id="wizard-step-2-content">
+        <div class="wizard-card-header">
+          <h2>Step 2: Room Scan &amp; Structure</h2>
+          <p>We scan the photo for structure, lighting direction, and its dominant colours. Colours are read directly from your image; the notes and estimate below are heuristic guidance, not a measured survey.</p>
+        </div>
+
+        <div class="analysis-viewer-container">
+          <!-- Bounding Boxes Overlay Image -->
+          <div class="analysis-image-frame">
+            <div class="scanning-laser hidden" id="analysis-scanner"></div>
+            <img src="lobby_starter_original.jpg" alt="Room original for analysis" id="analysis-preview-img">
+            <!-- SVG Overlay for Bounding boxes -->
+            <svg viewBox="0 0 800 600" class="analysis-svg-overlay">
+              <g id="lobby-bounding-boxes">
+                <!-- Washbasin plumbing zone -->
+                <rect x="15" y="320" width="135" height="250" class="bbox-rect plumbing" />
+                <text x="25" y="345" class="bbox-text">Plumbing Wet Zone</text>
+                <!-- Stairs structural column -->
+                <rect x="120" y="270" width="60" height="260" class="bbox-rect structural" />
+                <text x="130" y="295" class="bbox-text">Stair Post (Structural)</text>
+                <!-- Doorway 1 -->
+                <rect x="290" y="165" width="110" height="205" class="bbox-rect entry" />
+                <text x="300" y="190" class="bbox-text">Doorway 1</text>
+                <!-- Doorway 2 -->
+                <rect x="415" y="170" width="105" height="205" class="bbox-rect entry" />
+                <text x="425" y="195" class="bbox-text">Doorway 2</text>
+                <!-- Ambient Light source direction indicator -->
+                <line x1="50" y1="80" x2="160" y2="180" class="light-arrow" marker-end="url(#arrow)" />
+                <text x="60" y="70" class="light-text">Natural Daylight (Front-Left)</text>
+              </g>
+              <g id="custom-bounding-boxes" class="hidden">
+                <!-- Will be dynamically populated via JS -->
+              </g>
+              
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b" />
+                </marker>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- Analysis Results Details -->
+          <div class="analysis-data-card">
+            <h3>Room Analysis Report</h3>
+            <div class="analysis-bullets">
+              <div class="analysis-bullet-item">
+                <span class="bullet-label">Room Type:</span>
+                <span class="bullet-desc" id="analysis-room-type">Residential Lobby / Entrance Lounge</span>
+              </div>
+              
+              <div class="analysis-bullet-item">
+                <span class="bullet-label">Existing Furniture Inventory:</span>
+                <span class="bullet-desc" id="analysis-inventory">2x mismatched wooden-frame sofas with throws, 1x low wood coffee table, 1x white plastic armchair, 1x pedestal sink.</span>
+              </div>
+              
+              <div class="analysis-bullet-item">
+                <span class="bullet-label">Lighting Assessment:</span>
+                <span class="bullet-desc" id="analysis-lighting">Natural cool morning daylight from front-left door openings. Ceiling fan lights cast soft ambient glare. Washbasin corner lacks task lighting.</span>
+              </div>
+              
+              <div class="analysis-bullet-item">
+                <span class="bullet-label">Color Palette Assessment:</span>
+                <span class="bullet-desc" id="analysis-palette">Chalky off-white walls, grey/white marbled tile flooring, dark wood trims, purple/pink seating sheet covers (high visual noise).</span>
+                <div class="analysis-colors-swatch" id="analysis-palette-swatches">
+                  <!-- Dynamically populated color swatches -->
+                </div>
+              </div>
+
+              <div class="analysis-bullet-item">
+                <div class="score-header">
+                  <span class="bullet-label">Improvement Potential (estimate):</span>
+                  <strong id="analysis-score-val">58%</strong>
+                </div>
+                <div class="score-bar-bg">
+                  <div class="score-bar-fg" id="analysis-score-bar" style="width: 58%;"></div>
+                </div>
+              </div>
+              
+              <div class="analysis-bullet-item">
+                <span class="bullet-label">Improvement Opportunities:</span>
+                <ul class="opportunities-list" id="analysis-opportunities">
+                  <li>Replace mismatched furniture and covers to unify style.</li>
+                  <li>Inlay natural path markers to direct foot traffic flows.</li>
+                  <li>Incorporate vertical wood paneling to hide door alignments.</li>
+                  <li>Add floating vanity to conceal washbasin pipes.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="wizard-actions-row">
+              <button class="secondary-btn wizard-next-btn" data-target-step="1">← Back to Upload</button>
+              <button class="primary-btn wizard-next-btn" data-target-step="3">Choose Design Style ➔</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3: Style Selection -->
+      <section class="wizard-content" id="wizard-step-3-content">
+        <div class="wizard-card-header">
+          <h2>Step 3: Select Design Style Preset</h2>
+          <p>Select one of the five custom presets. The <strong>Interior Designer Agent</strong> will apply it to the rendering engine.</p>
+        </div>
+
+        <div class="style-deck">
+          <!-- Modern Minimalist -->
+          <div class="style-card" data-style-preset="minimalist">
+            <div class="style-card-accent minimalist"></div>
+            <div class="style-card-body">
+              <span class="style-emoji">📐</span>
+              <h3>Modern Minimalist</h3>
+              <p>Stark monochromatic contrast and geometric furniture lines to create maximum spatial breathing room.</p>
+              <div class="colors-row">
+                <span class="color-dot" style="background:#ffffff;" title="Gallery White"></span>
+                <span class="color-dot" style="background:#1c1d22;" title="Charcoal Black"></span>
+                <span class="color-dot" style="background:#a3a3a3;" title="Concrete Grey"></span>
+              </div>
+              <span class="style-mat">Concrete, Steel, Glass</span>
+            </div>
+          </div>
+
+          <!-- Scandinavian -->
+          <div class="style-card" data-style-preset="scandinavian">
+            <div class="style-card-accent scandinavian"></div>
+            <div class="style-card-body">
+              <span class="style-emoji">🌾</span>
+              <h3>Scandinavian</h3>
+              <p>Bright, airy, and light-filled. Emphasizes warm pine, soft wool textures, and cozy functional aesthetics.</p>
+              <div class="colors-row">
+                <span class="color-dot" style="background:#f9f9fb;" title="Chalk White"></span>
+                <span class="color-dot" style="background:#e8dcc4;" title="Birch Oak"></span>
+                <span class="color-dot" style="background:#b4c6e7;" title="Powder Blue"></span>
+              </div>
+              <span class="style-mat">Blonde Oak, Linen, Wool</span>
+            </div>
+          </div>
+
+          <!-- Japandi -->
+          <div class="style-card active" data-style-preset="japandi">
+            <div class="style-card-accent japandi"></div>
+            <div class="style-card-body">
+              <span class="style-emoji">⛩️</span>
+              <h3>Japandi</h3>
+              <p>The perfect blend of Japanese raw wabi-sabi minimalism and warm, functional Danish hygge styling.</p>
+              <div class="colors-row">
+                <span class="color-dot" style="background:#ebdcb9;" title="Warm Sand"></span>
+                <span class="color-dot" style="background:#1a1a1a;" title="Charred Ash"></span>
+                <span class="color-dot" style="background:#e3d6c5;" title="Cream"></span>
+              </div>
+              <span class="style-mat">Charred Wood, Bamboo, Twine</span>
+            </div>
+          </div>
+
+          <!-- Contemporary Luxury -->
+          <div class="style-card" data-style-preset="luxury">
+            <div class="style-card-accent luxury"></div>
+            <div class="style-card-body">
+              <span class="style-emoji">💎</span>
+              <h3>Contemporary Luxury</h3>
+              <p>Sophisticated and dramatic. Combines rich dark walnut wood panels, bookmatched marble, and gold trims.</p>
+              <div class="colors-row">
+                <span class="color-dot" style="background:#ffffff;" title="Calacatta Marble"></span>
+                <span class="color-dot" style="background:#d4af37;" title="Gold/Brass"></span>
+                <span class="color-dot" style="background:#1b2430;" title="Charcoal Navy"></span>
+              </div>
+              <span class="style-mat">Polished Marble, Velvet, Brass</span>
+            </div>
+          </div>
+
+          <!-- Warm Organic -->
+          <div class="style-card" data-style-preset="organic">
+            <div class="style-card-accent organic"></div>
+            <div class="style-card-body">
+              <span class="style-emoji">🪴</span>
+              <h3>Warm Organic</h3>
+              <p>Sun-drenched, textured, and earthy. Uses microcement finishes, raw travertine stone, and woven rattan.</p>
+              <div class="colors-row">
+                <span class="color-dot" style="background:#c97a53;" title="Terracotta"></span>
+                <span class="color-dot" style="background:#d9ac82;" title="Warm Sand"></span>
+                <span class="color-dot" style="background:#5e6f52;" title="Olive Green"></span>
+              </div>
+              <span class="style-mat">Travertine, Rattan, Bouclé</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-actions-row">
+          <button class="secondary-btn wizard-next-btn" data-target-step="2">← Back to Analysis</button>
+          <button class="primary-btn wizard-next-btn select-style-btn" id="btn-generate-redesign">Preview This Style ➔</button>
+        </div>
+      </section>
+
+      <!-- Step 4: AI Redesign Render -->
+      <section class="wizard-content" id="wizard-step-4-content">
+        <div class="wizard-card-header">
+          <h2>Step 4: Style Preview</h2>
+          <p>Use the slider to compare your original room with a colour-graded preview of the selected style. This is a mood preview to help you picture a direction — it is <strong>not</strong> a generated redesign, and no furniture or finishes are actually changed.</p>
+        </div>
+
+        <!-- Render Image Comparison Area -->
+        <div class="wizard-render-layout">
+          <!-- Comparison Slider Container -->
+          <div class="wizard-slider-outer" id="wizard-slider-container">
+            <div class="wizard-slider-bg">
+              <img src="lobby_starter_level2.png" id="wizard-redesign-img" alt="AI Redesigned Room">
+              <div class="custom-render-badge hidden" id="custom-render-badge">◑ Style Preview</div>
+              <div id="custom-proposal-overlays" class="hidden"></div>
+            </div>
+            <div class="wizard-slider-fg" id="wizard-slider-fg">
+              <img src="lobby_starter_original.jpg" alt="Original Room">
+            </div>
+            <!-- Slider handle -->
+            <div class="wizard-slider-handle" id="wizard-slider-handle">
+              <div class="handle-line"></div>
+              <div class="handle-button">
+                <span>◀</span><span>▶</span>
+              </div>
+              <div class="handle-line"></div>
+            </div>
+          </div>
+
+          <!-- Controls side card -->
+          <div class="wizard-render-details">
+            <div class="concept-selector-row">
+              <div class="concept-selector">
+                <button class="concept-btn active" id="btn-concept-a" data-concept="A">Concept A</button>
+                <button class="concept-btn" id="btn-concept-b" data-concept="B">Concept B</button>
+              </div>
+            </div>
+
+            <!-- Comparison Mode Toggle -->
+            <div class="control-group">
+              <label class="control-label">Comparison Mode</label>
+              <div class="toggle-button-group">
+                <button class="toggle-btn active" id="btn-compare-slider">Slider Compare</button>
+                <button class="toggle-btn" id="btn-compare-side-by-side">Side-by-Side</button>
+              </div>
+            </div>
+
+            <!-- Style Strength Control -->
+            <div class="control-group">
+              <div class="strength-header">
+                <label class="control-label">Style Transformation Strength</label>
+                <span class="strength-val-text" id="strength-val-text">Balanced</span>
+              </div>
+              <input type="range" min="1" max="3" value="2" class="strength-slider" id="style-strength-slider">
+              <div class="strength-labels">
+                <span>Subtle</span>
+                <span>Balanced</span>
+                <span>Dramatic</span>
+              </div>
+            </div>
+
+            <!-- Action buttons: Regenerate & Favorite -->
+            <div class="action-buttons-row">
+              <button class="action-btn" id="btn-regenerate-design">🔄 Regenerate Design</button>
+              <button class="btn-favorite-render" id="btn-favorite-render" title="Favorite this design concept">★ Favorite</button>
+            </div>
+
+            <!-- AI Status Board & Room Preservation System -->
+            <div class="designer-feedback-card preservation-card">
+              <h3>🔒 Room Preservation Principles</h3>
+              <div class="preservation-grid">
+                <div class="preservation-item checked">
+                  <span class="status-icon">✔</span>
+                  <div class="status-info">
+                    <strong>Room Geometry & Proportions</strong>
+                    <span>Verified: locked to raw dimensions <span id="preservation-dims">(15.2' x 18.5')</span></span>
+                  </div>
+                </div>
+                <div class="preservation-item checked">
+                  <span class="status-icon">✔</span>
+                  <div class="status-info">
+                    <strong>Walls & Pillars</strong>
+                    <span>Verified: structural bounds untouched</span>
+                  </div>
+                </div>
+                <div class="preservation-item checked">
+                  <span class="status-icon">✔</span>
+                  <div class="status-info">
+                    <strong>Doors & Windows</strong>
+                    <span>Verified: apertures locked in position</span>
+                  </div>
+                </div>
+                <div class="preservation-item checked">
+                  <span class="status-icon">✔</span>
+                  <div class="status-info">
+                    <strong>Ceiling & Camera Angle</strong>
+                    <span>Verified: focal height and bounds locked</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="designer-feedback-card confidence-card">
+              <h3>⚙️ Preview Status</h3>
+              <ul class="confidence-list">
+                <li class="completed">Photo scanned <span class="status-tag success">Done</span></li>
+                <li class="completed">Colours read from image <span class="status-tag success">Done</span></li>
+                <li class="completed">Design Style Selected <span class="status-tag info" id="confidence-style">Japandi</span></li>
+                <li class="completed">Style preview ready <span class="status-tag success" id="confidence-gen-status">Ready</span></li>
+              </ul>
+            </div>
+
+            <div class="designer-feedback-card">
+              <h3>Interior Designer Agent Feedback</h3>
+              <p id="wizard-designer-notes">Redesigning the space using the Japandi preset. We integrated a natural stone pathway flush with the flooring, removed hanging visual clutter, and introduced organic soil-planted ferns near the staircase to blend indoor and outdoor aesthetics naturally.</p>
+              <div class="prompt-code-card">
+                <h4>Generated Rendering Prompt:</h4>
+                <code id="wizard-generated-prompt">"A photo of the exact same living room lobby, edited to show a subtle, realistic, and believable walkway and planting upgrade. Clean up room clutter and remove door hangings. Integrate a simple natural stone walkway path inlaid flush with the grey marble flooring. Add a few indoor plants..."</code>
+              </div>
+            </div>
+            <div class="wizard-actions-row">
+              <button class="secondary-btn wizard-next-btn" data-target-step="3">← Back to Styles</button>
+              <button class="primary-btn wizard-next-btn" data-target-step="5">Review Sourced Furniture ➔</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 5: Furniture Specs -->
+      <section class="wizard-content" id="wizard-step-5-content">
+        <div class="wizard-card-header">
+          <h2>Step 5: Sourced Furniture & Decor Specifications</h2>
+          <p>The <strong>Furniture Recommendation Agent</strong> has sourced real-world, commercially available items matching the theme.</p>
+        </div>
+
+        <div class="furniture-split-layout">
+          <!-- Small visual reference -->
+          <div class="furniture-visual-ref">
+            <img src="lobby_starter_level2.png" id="furniture-ref-img" alt="Design Reference">
+          </div>
+
+          <!-- Sourced Items Grid -->
+          <div class="furniture-specs-panel">
+            <h3>Sourced Sourcing List</h3>
+            <div class="architecture-compliance-card" id="furniture-compliance-card">
+              <span class="compliance-badge">✔ Fit Checked</span>
+              <p id="furniture-compliance-text">Layout verifies pathway clearances and boundaries.</p>
+            </div>
+            <div class="furniture-grid" id="furniture-items-container">
+              <!-- Dynamically populated based on selected style preset -->
+            </div>
+            <div class="specs-footer">
+              <div class="cart-total">
+                <span>Total Budget Estimate (Items):</span>
+                <strong id="furniture-total-price">$1,850</strong>
+              </div>
+              <div style="display: flex; gap: 1rem; align-items: center;">
+                <button class="secondary-btn wizard-next-btn" data-target-step="4">← Back to Redesign</button>
+                <button class="primary-btn wizard-next-btn" data-target-step="6">Generate Final Report ➔</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 6: Download Report -->
+      <section class="wizard-content" id="wizard-step-6-content">
+        <div class="wizard-card-header">
+          <h2>Step 6: Final Design Package & Report</h2>
+          <p>Your transformation package is complete. Download the specs, contractor instructions, and budget estimations.</p>
+        </div>
+
+        <!-- Budget Tier Selector -->
+        <div class="budget-selector-card">
+          <h3>Select Investment Budget Tier</h3>
+          <p class="subtitle">Choose how far you want to take your transformation. Estimates and schedules adjust automatically.</p>
+          <div class="budget-tiers-deck">
+            <button class="budget-tier-btn" data-budget-tier="refresh" id="btn-budget-refresh">
+              <span class="tier-icon">🌱</span>
+              <div class="tier-info">
+                <span class="tier-name">Budget Refresh</span>
+                <span class="tier-range">$500 – $1,500</span>
+              </div>
+            </button>
+            
+            <button class="budget-tier-btn active" data-budget-tier="smart" id="btn-budget-smart">
+              <span class="tier-icon">⚡</span>
+              <div class="tier-info">
+                <span class="tier-name">Smart Upgrade</span>
+                <span class="tier-range">$1,500 – $4,500</span>
+              </div>
+            </button>
+            
+            <button class="budget-tier-btn" data-budget-tier="premium" id="btn-budget-premium">
+              <span class="tier-icon">👑</span>
+              <div class="tier-info">
+                <span class="tier-name">Premium Transformation</span>
+                <span class="tier-range">$5,000 – $15,000+</span>
+              </div>
+            </button>
+          </div>
+          
+          <!-- Expected Improvements Box -->
+          <div class="expected-improvements-box">
+            <h4>Expected Improvements & Scope:</h4>
+            <ul id="budget-expected-improvements">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="final-report-grid">
+          <!-- Report Summary Details -->
+          <div class="report-summary-card">
+            <h3>Lobby Redesign Summary</h3>
+            <div class="report-details-table">
+              <div class="table-row">
+                <span>Selected Aesthetic:</span>
+                <strong id="report-style-name">Japandi Style</strong>
+              </div>
+              <div class="table-row">
+                <span>Detected Coordinates:</span>
+                <strong>Lobby Entrance (Starter View)</strong>
+              </div>
+              <div class="table-row">
+                <span>Estimated Materials Cost:</span>
+                <strong id="report-mat-cost">$450</strong>
+              </div>
+              <div class="table-row">
+                <span>Estimated Sourced Furniture:</span>
+                <strong id="report-furniture-cost">$1,850</strong>
+              </div>
+              <div class="table-row">
+                <span>Estimated Labor Cost:</span>
+                <strong id="report-labor-cost">$600</strong>
+              </div>
+              <div class="table-row-total">
+                <span>Projected Total Project Cost:</span>
+                <strong id="report-total-cost">$2,900</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phased Renovation Schedule -->
+          <div class="report-schedule-card">
+            <h3>Phased Construction Schedule</h3>
+            <div class="schedule-timeline">
+              <div class="timeline-step">
+                <span class="t-badge">Phase 1</span>
+                <div class="t-info">
+                  <strong>Preparation & Declutter (Day 1)</strong>
+                  <p>Clear all visual clutter, door hanging garments, and clean floor marble tiles.</p>
+                </div>
+              </div>
+              
+              <div class="timeline-step">
+                <span class="t-badge">Phase 2</span>
+                <div class="t-info">
+                  <strong>Walkway Construction (Days 2-3)</strong>
+                  <p>Prepare floor bedding and inlay natural stone walkway flush with marble tiling margins.</p>
+                </div>
+              </div>
+              
+              <div class="timeline-step">
+                <span class="t-badge">Phase 3</span>
+                <div class="t-info">
+                  <strong>Natural Landscaping (Day 4)</strong>
+                  <p>Introduce custom organic soil beds and plant indoor ground ferns next to the stairs.</p>
+                </div>
+              </div>
+              
+              <div class="timeline-step">
+                <span class="t-badge">Phase 4</span>
+                <div class="t-info">
+                  <strong>Furniture Installation (Day 5)</strong>
+                  <p>Unpack, assemble, and position sourced furniture according to the layout guidelines.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-download-action">
+          <button class="primary-btn pulse-glow" id="btn-download-package">📥 Download Designer Spec Report (.html)</button>
+          <button class="secondary-btn" id="btn-restart-wizard">🔄 Restart Design Wizard</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Studio Portfolio Drawer -->
+  <div class="portfolio-drawer" id="portfolio-drawer">
+    <div class="drawer-header">
+      <h2>💼 Studio Portfolio</h2>
+      <button class="drawer-close" id="btn-close-drawer">✕</button>
+    </div>
+    
+    <div class="drawer-tabs">
+      <button class="drawer-tab active" data-drawer-tab="projects" id="tab-drawer-projects">Projects</button>
+      <button class="drawer-tab" data-drawer-tab="favorites" id="tab-drawer-favorites">Favorites</button>
+      <button class="drawer-tab" data-drawer-tab="history" id="tab-drawer-history">Room History</button>
+    </div>
+
+    <!-- Projects Tab Pane -->
+    <div class="drawer-content-pane active" id="pane-drawer-projects">
+      <div class="drawer-empty-state" id="projects-empty">
+        <p>No saved projects yet.</p>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Click "Save Project State" in the sidebar while designing!</span>
+      </div>
+      <div class="projects-list" id="projects-list"></div>
+    </div>
+
+    <!-- Favorites Tab Pane -->
+    <div class="drawer-content-pane" id="pane-drawer-favorites">
+      <div class="drawer-empty-state" id="favorites-empty">
+        <p>No favorite designs yet.</p>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Click "★ Favorite" in Step 4 to save a rendering concept!</span>
+      </div>
+      <div class="favorites-list" id="favorites-list"></div>
+    </div>
+
+    <!-- History Tab Pane -->
+    <div class="drawer-content-pane" id="pane-drawer-history">
+      <div class="drawer-empty-state" id="history-empty">
+        <p>No uploaded room history.</p>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Custom photos uploaded in Step 1 will appear here.</span>
+      </div>
+      <div class="history-list" id="history-list"></div>
+    </div>
+  </div>
+  
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <!-- JavaScript -->
+  <script src="app.js?v=12"></script>
+  <!-- Adds the "My Walkthroughs" tab. Self-contained: extends the walkthrough
+       engine above rather than modifying it. -->
+  <script src="walkthrough-builder.js?v=3"></script>
+  <!-- Front-door welcome overlay. Self-contained: injects its own UI/styles. -->
+  <script src="landing.js?v=1"></script>
+</body>
+</html>

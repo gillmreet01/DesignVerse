@@ -1,0 +1,621 @@
+{
+  
+  
+  
+  "lobby_pos0_f": {
+    "title": "Lobby Entrance",
+    "headingText": "Entrance View - Facing Forward",
+    "filePrefix": "lobby_starter",
+    "room": "lobby",
+    "posNum": 0,
+    "rotation": 0,
+    "cx": 50,
+    "cy": 95,
+    "transitions": {
+      "up": "lobby_pos1_f"
+    },
+    "features": {
+      "original": [
+        "White pedestal washbasin with basic exposed plumbing on the left",
+        "Cluttered wooden coffee table and mismatched sofa pillows",
+        "Classic marble floor and white plastered walls",
+        "Clothes hanging on the open doorways in the background",
+        "White plastic stackable armchair near the center"
+      ],
+      "level1": [
+        "Subtle "tidying": removed towels and hanging clothes from the door frames",
+        "Rearranged "sofas": cushions fluffed and neatly aligned",
+        "Surface "decluttered": coffee table and floor cleared of loose objects",
+        "Polished "tiles": floor tile surface reflections cleaned and smoothed"
+      ],
+      "level2": [
+        "Subtle stone "walkway": natural flat stones inlaid flush into the marble flooring",
+        "Organic "greenery": ferns and leafy plants planted directly into natural soil beds along the stair column (no planters)",
+        "Visual breathing "room": all hanging garments and floor clutter cleared",
+        "Cleaned seating layout and coffee table surfaces"
+      ],
+      "minimal": [
+        "Cleaned "doorways": clothes and towels removed",
+        "Tidied "seating": cushions neatly arranged and organized",
+        "Armchair "upgraded": plastic chair replaced with simple wooden chair",
+        "Modern vanity "mirror": black-framed mirror added above washbasin",
+        "Clutter "cleared": coffee table and floor clutter removed"
+      ],
+      "moderate": [
+        "Contemporary grey fabric sofas replacing original furniture",
+        "Minimalist wooden coffee table in center",
+        "Warm neutral wall paint (beige/greige tone)",
+        "Soft neutral area rug grounding the seating zone",
+        "Floating wooden vanity sink replacing the pedestal basin",
+        "LED-backlit rectangular mirror above the sink"
+      ],
+      "complete": [
+        "Premium walnut wood panels and gold-veined marble slabs on walls",
+        "Large-format polished grey marble floor tiles",
+        "Curved velvet designer sofa and matching armchair with brass frames",
+        "Luxurious white marble coffee table with gold base",
+        "High-end solid marble vanity top with premium gold faucet",
+        "Backlit circular LED vanity mirror as room focal point"
+      ]
+    }
+  },
+  "lobby_pos1_f": {
+    "title": "Lobby Center (Forward)",
+    "headingText": "Middle Position - Facing Forward",
+    "filePrefix": "lobby_pos1_f",
+    "room": "lobby",
+    "posNum": 1,
+    "rotation": 0,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "up": "lobby_pos2_r",
+      "down": "lobby_pos0_f",
+      "left": "lobby_pos1_l",
+      "right": "lobby_pos1_r",
+      "uturn": "lobby_pos1_b"
+    },
+    "features": {
+      "original": [
+        "Direct forward view of the two inner doorways",
+        "A closer look at the items hanging on the left door frame",
+        "Pedestal basin visible on the far left edge",
+        "Mismatched sofas and wooden coffee table in detail"
+      ],
+      "level1": [
+        "Subtle "declutter": doorway frames cleared of towels and clothes",
+        "Sofas and coffee table surfaces tidied up slightly"
+      ],
+      "level2": [
+        "Stone walkway inlaid path visible leading from the entrance",
+        "Small ground-planted indoor ferns lining the wall corners"
+      ],
+      "minimal": [
+        "Doorways cleared of all hanging garments",
+        "Sofa cushions neatly fluffed and aligned",
+        "Coffee table surface decluttered",
+        "Modern basin mirror visible on the left wall"
+      ],
+      "moderate": [
+        "Warm paint color continues across the main partition walls",
+        "Sleek light grey sofas with clean-lined throw cushions",
+        "Modern area rug visible underfoot",
+        "Updated floating wooden vanity visible on the left"
+      ],
+      "complete": [
+        "Walnut wood paneling details framing both doorways",
+        "Gold-veined white marble accent wall panels",
+        "Polished floor tiles showing clean reflections",
+        "Cream curved velvet sofa and designer coffee table set"
+      ]
+    }
+  },
+  "lobby_pos1_r": {
+    "title": "Lobby Center (Right)",
+    "headingText": "Middle Position - Looking Right",
+    "filePrefix": "lobby_pos1_r",
+    "room": "lobby",
+    "posNum": 1,
+    "rotation": 90,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "up": "lobby_pos2_r",
+      "left": "lobby_pos1_f",
+      "right": "lobby_pos1_b",
+      "uturn": "lobby_pos1_l"
+    },
+    "features": {
+      "original": [
+        "Close-up of the built-in display cabinet with family items",
+        "Older fabric-draped sofa with mismatched pillows",
+        "Wall-mounted family portraits on the right wall",
+        "Split view of the doorways on the left edge"
+      ],
+      "level1": [
+        "Organized items in display cabinet to look tidy",
+        "Sofa cushions rearranged neatly, floor swept"
+      ],
+      "level2": [
+        "Subtle natural soil beds with ground plants in display corners",
+        "Subtle stone path borders visible on the floor edge"
+      ],
+      "minimal": [
+        "Cleaned sofa area, blankets folded neatly",
+        "Display cabinet items organized",
+        "Removal of visual clutter on the floor"
+      ],
+      "moderate": [
+        "Modern grey sofa set fully visible on the right",
+        "Warm beige wall color contrasting with the dark display frame",
+        "Neutral floor rug matching the contemporary sofa set"
+      ],
+      "complete": [
+        "Sleek custom glass-and-brass recessed display cabinet",
+        "Designer cream armchair with gold legs in the corner",
+        "Walnut wood paneling and marble details on the main wall",
+        "Elegant lighting casting warm glows down the wall"
+      ]
+    }
+  },
+  "lobby_pos1_l": {
+    "title": "Lobby Center (Left)",
+    "headingText": "Middle Position - Looking Left",
+    "filePrefix": "lobby_pos1_l",
+    "room": "lobby",
+    "posNum": 1,
+    "rotation": 270,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "up": "lobby_pos2_l",
+      "left": "lobby_pos1_b",
+      "right": "lobby_pos1_f",
+      "uturn": "lobby_pos1_r"
+    },
+    "features": {
+      "original": [
+        "Direct close-up of the washbasin and staircase area",
+        "Exposed pipes and white pedestal basin support",
+        "Old decorative deer painting on the wall",
+        "Wooden stair baluster showing traditional carving"
+      ],
+      "level1": [
+        "Tidied soap pump and towels near the washbasin",
+        "Cleared floor spaces around the stairs"
+      ],
+      "level2": [
+        "Subtle ferns planted naturally at the base of the stairs",
+        "Stone pathway edging framing the washbasin floor area"
+      ],
+      "minimal": [
+        "Cleaned sink basin area, soap and hand towels tidied",
+        "Modern black-framed square mirror on the wall",
+        "Deer painting aligned neatly"
+      ],
+      "moderate": [
+        "Floating wood vanity sink with white ceramic top",
+        "LED-backlit rectangular mirror framing",
+        "Warm beige paint applied to the staircase support wall"
+      ],
+      "complete": [
+        "High-end custom marble floating vanity with gold faucet",
+        "Large round backlit LED vanity mirror",
+        "Sleek architectural details covering the staircase column",
+        "Sophisticated walnut details highlighting the stair boundary"
+      ]
+    }
+  },
+  "lobby_pos2_r": {
+    "title": "Lobby End (Right)",
+    "headingText": "End Position - Looking Right",
+    "filePrefix": "lobby_pos2_r",
+    "room": "lobby",
+    "posNum": 2,
+    "rotation": 90,
+    "cx": 50,
+    "cy": 25,
+    "transitions": {
+      "left": "lobby_pos2_l",
+      "right": "lobby_pos2_b",
+      "uturn": "lobby_pos2_l",
+      "down": "lobby_pos1_r",
+      "up": "draw_pos0_f" 
+    },
+    "features": {
+      "original": [
+        "Deep perspective view of the seating area from the back",
+        "Built-in display shelf visible in the upper right",
+        "Older coffee table and sofa styling"
+      ],
+      "level1": [
+        "Rear seating pillows tidied and organized",
+        "Floor swept and clear of dust/loose items"
+      ],
+      "level2": [
+        "Subtle greenery trailing near the corner edges",
+        "Walkway path terminates cleanly at the floor border"
+      ],
+      "minimal": [
+        "Sofa blankets and cushions neatly placed",
+        "Surrounding floors swept and clutter-free"
+      ],
+      "moderate": [
+        "Clean layout with grey matching furniture set",
+        "New wood coffee table and beige wall finishes"
+      ],
+      "complete": [
+        "Walnut panels lining the walls to the end of the room",
+        "Premium curved velvet seating showing detailed upholstery",
+        "Polished floor tile margins reflecting warm wall lighting"
+      ]
+    }
+  },
+  "lobby_pos2_l": {
+    "title": "Lobby End (Left)",
+    "headingText": "End Position - Looking Left",
+    "filePrefix": "lobby_pos2_l",
+    "room": "lobby",
+    "posNum": 2,
+    "rotation": 270,
+    "cx": 50,
+    "cy": 25,
+    "transitions": {
+      "left": "lobby_pos2_b",
+      "right": "lobby_pos2_r",
+      "uturn": "lobby_pos2_r",
+      "down": "lobby_pos1_l",
+      "up": "bed_pos0_f" 
+    },
+    "features": {
+      "original": [
+        "Deep perspective view of the washbasin and stairs",
+        "Staircase rails and pedestal sink visible at a distance"
+      ],
+      "level1": [
+        "Walkway next to stair column cleared of loose items",
+        "Washbasin counter tidied"
+      ],
+      "level2": [
+        "Ferns planted naturally under the staircase rail section",
+        "Subtle stone path leading towards the sink"
+      ],
+      "minimal": [
+        "decluttered walkways along the stair post",
+        "Modern square vanity mirror visible in the background"
+      ],
+      "moderate": [
+        "Floating wood vanity and glowing LED mirror visible on the left",
+        "Warm beige painted walls giving a cohesive look"
+      ],
+      "complete": [
+        "Elegant marble vanity with gold fixtures visible",
+        "Large glowing round backlit LED mirror",
+        "Polished marble floor tiles leading towards the entrance"
+      ]
+    }
+  },
+  "lobby_pos2_b": {
+    "title": "Lobby End (Facing Entrance)",
+    "headingText": "End Position - Turned Around",
+    "filePrefix": "lobby_pos2_b",
+    "room": "lobby",
+    "posNum": 2,
+    "rotation": 180,
+    "cx": 50,
+    "cy": 25,
+    "transitions": {
+      "up": "lobby_pos1_b",
+      "left": "lobby_pos2_r",
+      "right": "lobby_pos2_l",
+      "uturn": "lobby_pos2_r"
+    },
+    "features": {
+      "original": [
+        "View looking back towards the entrance of the lobby",
+        "Traditional doorways on the right and left sides",
+        "Mismatched sofas and pedestal sink in a reversed view"
+      ],
+      "level1": [
+        "Entrance pathways decluttered and tidied",
+        "Couches and pillows organized in entrance view"
+      ],
+      "level2": [
+        "Subtle stone walkway stretching towards the entrance",
+        "Lush ground plantings flanking the door frames"
+      ],
+      "minimal": [
+        "Entrance view completely cleared of clutter",
+        "Tidied couches and wooden chair layout visible from the rear"
+      ],
+      "moderate": [
+        "Cohesive modern look from the "rear": greige walls and grey sofas",
+        "Area rug centered neatly in the room view"
+      ],
+      "complete": [
+        "Stunning walnut paneling framing the main entrance view",
+        "Glowing vanity lights and display lights reflecting on the polished marble floors"
+      ]
+    }
+  },
+  "lobby_pos1_b": {
+    "title": "Lobby Center (Facing Entrance)",
+    "headingText": "Middle Position - Facing Entrance",
+    "filePrefix": "lobby_pos1_b",
+    "room": "lobby",
+    "posNum": 1,
+    "rotation": 180,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "up": "lobby_pos0_f",
+      "down": "lobby_pos2_b",
+      "left": "lobby_pos1_r",
+      "right": "lobby_pos1_l",
+      "uturn": "lobby_pos1_f"
+    },
+    "features": {
+      "original": [
+        "A closer look back towards the entrance area",
+        "Washbasin cabinet visible on the right",
+        "Seating details visible on the left"
+      ],
+      "level1": [
+        "Decluttered walkways and tidied sofa details",
+        "Floor swept and basin area cleaned up"
+      ],
+      "level2": [
+        "Walkway path and indoor ground plants visible in the entrance frame"
+      ],
+      "minimal": [
+        "Clutter-free entrance view from the center of the room",
+        "Clean floor and tidied sofa details"
+      ],
+      "moderate": [
+        "Polished, cohesive layout with greige walls and modern seating",
+        "Clean, floating vanity profile visible on the right"
+      ],
+      "complete": [
+        "Luxury hotel lobby vibe when looking back at the entrance",
+        "Beautiful wall lighting and wood textures reflecting on the marble"
+      ]
+    }
+  },
+
+  
+  
+  
+  "bed_pos0_f": {
+    "title": "Bedroom Entrance",
+    "headingText": "Entrance View - Looking Into Bedroom",
+    "filePath": "../bedroom/WhatsApp Image 2026-05-31 at 18.05.05.jpeg",
+    "room": "bedroom",
+    "posNum": 0,
+    "rotation": 0,
+    "cx": 50,
+    "cy": 95,
+    "transitions": {
+      "up": "bed_pos1_f",
+      "down": "lobby_pos2_l", 
+      "uturn": "lobby_pos2_l"
+    },
+    "features": {
+      "original": [
+        "View looking into the bedroom from the entry doorway",
+        "Double bed frame placed against the main back wall",
+        "Warm neutral bed linens and pillows",
+        "Natural daylight coming from the window on the right wall",
+        "Traditional wooden nightstand/bedside table on the left side"
+      ]
+    }
+  },
+  "bed_pos1_f": {
+    "title": "Bedroom Center (Forward)",
+    "headingText": "Middle Position - Facing Forward",
+    "filePath": "../bedroom/WhatsApp Image 2026-05-31 at 18.05.05 (1).jpeg",
+    "room": "bedroom",
+    "posNum": 1,
+    "rotation": 0,
+    "cx": 50,
+    "cy": 55,
+    "transitions": {
+      "down": "bed_pos0_f",
+      "left": "bed_pos1_l",
+      "right": "bed_pos1_r",
+      "uturn": "bed_pos1_b"
+    },
+    "features": {
+      "original": [
+        "Close-up perspective of the double bed and headboard area",
+        "Neat wall-paint details behind the headboard",
+        "Symmetrical layout showing bedside clearance space"
+      ]
+    }
+  },
+  "bed_pos1_r": {
+    "title": "Bedroom Center (Right)",
+    "headingText": "Middle Position - Facing Window",
+    "filePath": "../bedroom/WhatsApp Image 2026-05-31 at 18.05.06.jpeg",
+    "room": "bedroom",
+    "posNum": 1,
+    "rotation": 90,
+    "cx": 50,
+    "cy": 55,
+    "transitions": {
+      "left": "bed_pos1_f",
+      "right": "bed_pos1_b",
+      "uturn": "bed_pos1_l"
+    },
+    "features": {
+      "original": [
+        "Perspective facing the main bedroom window layout",
+        "Bright natural daylight casting pleasant ambient lighting",
+        "Wall outlet and nightstand detailing visible on the right"
+      ]
+    }
+  },
+  "bed_pos1_l": {
+    "title": "Bedroom Center (Left)",
+    "headingText": "Middle Position - Facing Left Wall",
+    "filePath": "../bedroom/WhatsApp Image 2026-05-31 at 18.05.06 (1).jpeg",
+    "room": "bedroom",
+    "posNum": 1,
+    "rotation": 270,
+    "cx": 50,
+    "cy": 55,
+    "transitions": {
+      "left": "bed_pos1_b",
+      "right": "bed_pos1_f",
+      "uturn": "bed_pos1_r"
+    },
+    "features": {
+      "original": [
+        "View facing the left bedroom partition wall",
+        "Ample floor clearance space ideal for a sliding wardrobe console",
+        "Clean white plaster wall textures"
+      ]
+    }
+  },
+  "bed_pos1_b": {
+    "title": "Bedroom Center (Looking Exit)",
+    "headingText": "Middle Position - Turned Around Facing Door",
+    "filePath": "../bedroom/WhatsApp Image 2026-05-31 at 18.05.06 (2).jpeg",
+    "room": "bedroom",
+    "posNum": 1,
+    "rotation": 180,
+    "cx": 50,
+    "cy": 55,
+    "transitions": {
+      "up": "lobby_pos2_l", 
+      "down": "bed_pos0_f",
+      "left": "bed_pos1_r",
+      "right": "bed_pos1_l",
+      "uturn": "bed_pos1_f"
+    },
+    "features": {
+      "original": [
+        "View looking back towards the bedroom entry door frame",
+        "Sightline connecting directly back into the residential lobby",
+        "Door swing clearance margin visible on the floor tiles"
+      ]
+    }
+  },
+
+  
+  
+  
+  "draw_pos0_f": {
+    "title": "Drawing Room Entrance",
+    "headingText": "Entrance View - Looking Into Drawing Room",
+    "filePath": "../drawing/WhatsApp Image 2026-05-31 at 18.05.41.jpeg",
+    "room": "drawing",
+    "posNum": 0,
+    "rotation": 0,
+    "cx": 50,
+    "cy": 95,
+    "transitions": {
+      "up": "draw_pos1_f",
+      "down": "lobby_pos2_r", 
+      "uturn": "lobby_pos2_r"
+    },
+    "features": {
+      "original": [
+        "View looking into the drawing room lounge setup from the doorway",
+        "Low-profile fabric couch and coffee table layout in center",
+        "Large window on the back wall providing natural daylight",
+        "Traditional storage credenza and wall portraits visible"
+      ]
+    }
+  },
+  "draw_pos1_f": {
+    "title": "Drawing Room Center (Forward)",
+    "headingText": "Middle Position - Facing Forward",
+    "filePath": "../drawing/WhatsApp Image 2026-05-31 at 18.05.41 (1).jpeg",
+    "room": "drawing",
+    "posNum": 1,
+    "rotation": 0,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "down": "draw_pos0_f",
+      "left": "draw_pos1_l",
+      "right": "draw_pos1_r",
+      "uturn": "draw_pos1_b"
+    },
+    "features": {
+      "original": [
+        "Close-up perspective of the main seating area",
+        "Clean coffee table layout and sofa cushion arrangement",
+        "Open spatial layout allowing comfortable foot traffic flow"
+      ]
+    }
+  },
+  "draw_pos1_r": {
+    "title": "Drawing Room Center (Right)",
+    "headingText": "Middle Position - Facing Right Wall",
+    "filePath": "../drawing/WhatsApp Image 2026-05-31 at 18.05.42.jpeg",
+    "room": "drawing",
+    "posNum": 1,
+    "rotation": 90,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "left": "draw_pos1_f",
+      "right": "draw_pos1_b",
+      "uturn": "draw_pos1_l"
+    },
+    "features": {
+      "original": [
+        "View facing the right drawing room wall",
+        "Clean, low cabinet unit suitable for a television console",
+        "Decorative wall paintings and frames visible"
+      ]
+    }
+  },
+  "draw_pos1_l": {
+    "title": "Drawing Room Center (Left)",
+    "headingText": "Middle Position - Facing Left Wall",
+    "filePath": "../drawing/WhatsApp Image 2026-05-31 at 18.05.42 (1).jpeg",
+    "room": "drawing",
+    "posNum": 1,
+    "rotation": 270,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "left": "draw_pos1_b",
+      "right": "draw_pos1_f",
+      "uturn": "draw_pos1_r"
+    },
+    "features": {
+      "original": [
+        "View facing the left wall armchairs and sitting corner",
+        "Additional accent armchair seating for guests",
+        "Soft ambient daylight illuminating the corner textures"
+      ]
+    }
+  },
+  "draw_pos1_b": {
+    "title": "Drawing Room Center (Looking Exit)",
+    "headingText": "Middle Position - Turned Around Facing Door",
+    "filePath": "../drawing/WhatsApp Image 2026-05-31 at 18.05.42 (2).jpeg",
+    "room": "drawing",
+    "posNum": 1,
+    "rotation": 180,
+    "cx": 50,
+    "cy": 60,
+    "transitions": {
+      "up": "lobby_pos2_r", 
+      "down": "draw_pos0_f",
+      "left": "draw_pos1_r",
+      "right": "draw_pos1_l",
+      "uturn": "draw_pos1_f"
+    },
+    "features": {
+      "original": [
+        "View looking back towards the drawing room entryway doorway",
+        "Sightline leading directly out back into the main lobby area",
+        "Spacious wall clearance on both sides of the door frame"
+      ]
+    }
+  }
+}
