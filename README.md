@@ -36,9 +36,7 @@ No installation or build needed — it's a static site.
 
 ## 📸 Screenshots
 
-<!-- Add a screenshot or two here — drag an image into this section on GitHub,
-     or put files in /images and reference them like: -->
-<!-- ![DesignVerse UI](images/screenshot.png) -->
+![DesignVerse — Room Analysis Agent](images/screenshot.png)
 
 ## 📌 Status
 
