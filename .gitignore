@@ -1,0 +1,5 @@
+# Personal / non-project files — keep out of the public repo
+Manreet_Gill_Resume.*
+*.pptx
+transcripts/
+**/chat_transcript.md
